@@ -4,6 +4,9 @@ FROM node:14
 # Create and change to the app directory
 WORKDIR /usr/src/app
 
+# Install sqlite3
+RUN apt-get update && apt-get install -y sqlite3
+
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
@@ -27,3 +30,4 @@ EXPOSE 5000
 
 # Start the app
 CMD ["node", "server.js"]
+
