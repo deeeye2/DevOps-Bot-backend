@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Create uploads directory if not exists
-RUN mkdir -p /usr/src/app/uploads
+RUN mkdir -p /usr/src/app/uploads || true
 
 # Initialize the SQLite database
 COPY init_db.sql /usr/src/app/init_db.sql
