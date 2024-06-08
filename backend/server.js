@@ -6,7 +6,6 @@ const crypto = require('crypto');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -29,6 +28,8 @@ const upload = multer({ storage });
 const db = new sqlite3.Database('./problems_solutions.db', (err) => {
   if (err) {
     console.error('Database opening error: ', err);
+  } else {
+    console.log('Database connected');
   }
 });
 
@@ -103,11 +104,6 @@ const sendVerificationEmail = (email, code) => {
     }
   });
 };
-
-// Root path route
-app.get('/', (req, res) => {
-    res.send('Welcome to the DevOps Bot API');
-});
 
 // Register route
 app.post('/api/register', (req, res) => {
@@ -267,3 +263,4 @@ app.get('/api/solutions', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
