@@ -33,3 +33,4 @@ CREATE TABLE IF NOT EXISTS verification_codes (
   code TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
