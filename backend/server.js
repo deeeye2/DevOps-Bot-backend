@@ -5,11 +5,14 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const multer = require('multer');
 const path = require('path');
+const cors = require('cors');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -100,6 +103,11 @@ const sendVerificationEmail = (email, code) => {
     }
   });
 };
+
+// Root path route
+app.get('/', (req, res) => {
+    res.send('Welcome to the DevOps Bot API');
+});
 
 // Register route
 app.post('/api/register', (req, res) => {
