@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Copy initialization script
-COPY /opt/docker/init_db.sql /usr/src/app/init_db.sql
+COPY init_db.sql /usr/src/app/init_db.sql
 
 # Initialize the database
 RUN apt-get update && apt-get install -y sqlite3
