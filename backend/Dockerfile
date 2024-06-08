@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Ensure the uploads directory exists
-RUN mkdir -p /usr/src/app/uploads
+RUN mkdir -p /usr/src/app/uploads || true
 
 # Copy the init_db.sql script
 COPY init_db.sql /usr/src/app/init_db.sql
