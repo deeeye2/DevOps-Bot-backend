@@ -1,23 +1,24 @@
-# Use the official image as a parent image
+# Dockerfile for Backend
+
 FROM node:14
 
-# Set the working directory
+# Create app directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# Install app dependencies
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the application code to the working directory
+# Bundle app source
 COPY . .
 
-# Ensure the uploads directory exists
-RUN mkdir -p /usr/src/app/uploads
+# Copy initialization script
+COPY /opt/docker/init_db.sql /usr/src/app/init_db.sql
 
-# Expose the port the app runs on
+# Initialize the database
+RUN apt-get update && apt-get install -y sqlite3
+RUN sqlite3 /usr/src/app/problems_solutions.db < /usr/src/app/init_db.sql
+
+# Expose port and start the server
 EXPOSE 5000
-
-# Start the app
-CMD ["node", "server.js"]
+CMD [ "node", "server.js" ]
