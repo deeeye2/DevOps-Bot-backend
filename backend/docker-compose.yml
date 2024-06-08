@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: deeeye2/devops-bot-frontend:v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    image: deeeye2/devops-bot-backend:v1
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/uploads:/usr/src/app/uploads
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
