@@ -1,4 +1,4 @@
-echo 'CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY,
   username TEXT UNIQUE,
   password TEXT,
@@ -32,4 +32,4 @@ CREATE TABLE IF NOT EXISTS verification_codes (
   email TEXT,
   code TEXT,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);' > init_db.sql
+);
